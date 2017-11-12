@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\User;
+use App\Roles;
 
 class UsersTableSeeder extends Seeder {
 
@@ -11,11 +12,13 @@ class UsersTableSeeder extends Seeder {
      * @return void
      */
     public function run() {
+        $role = Roles::where('name', 'Admin')->first();
         $user = new User();
         $user->name = 'admin';
         $user->email = 'admin@gmail.com';
         $user->password = bcrypt('admin');
         $user->save();
+        $user->roles()->attach($role);
     }
 
 }
