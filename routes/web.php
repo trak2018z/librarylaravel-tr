@@ -15,11 +15,24 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
 Route::group([
     'middleware' => 'roles',
-    'roles' => ['Admin']
-        ], function() {
-    Route::resource('books', 'BooksController');
+    'roles' => ['Admin', 'Moderator']
+], function() {
+    Route::get('books', [
+        'uses' => 'BooksController@index',
+        'as' => 'books.index'
+    ]);
+    Route::get('books/create', [
+        'uses' => 'BooksController@create',
+        'as' => 'books.create'
+    ]);
+    Route::post('books/store', [
+        'uses' => 'BooksController@store',
+        'as' => 'books.store'
+    ]);
+
 });
 Auth::routes();
 

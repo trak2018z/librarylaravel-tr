@@ -13,7 +13,7 @@ class BooksController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        $books = Books::paginate(10);
+        $books = Books::orderBy('id', 'DESC')->paginate(10);
         return view('books.index', compact('books'));
     }
 
@@ -23,17 +23,18 @@ class BooksController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function create() {
-        //
+        return view('books.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\BooksRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request) {
-        //
+    public function store(\App\Http\Requests\BooksRequest $request) {
+        Books::create($request->all());
+        return redirect()->route('books.index');
     }
 
     /**

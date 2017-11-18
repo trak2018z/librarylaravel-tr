@@ -1,6 +1,6 @@
 @extends('layout')
 @section('content')
-  
+<a class="btn btn-primary" href="{{route('books.create')}}"> Dodaj książke</a>
     <table class="table table-hover">
         <tr>
             <th>ID</th>
