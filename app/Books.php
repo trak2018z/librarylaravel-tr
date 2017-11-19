@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Books extends Model
 {
     protected $fillable = [
-        'title','author'
+        'title','author','description','year'
     ];
 }

@@ -15,8 +15,16 @@
             {!! Form::text('title', $book->title, ['class'=>'form-control']) !!}
         </div>
         <div class="form-group">
-            {!! Form::label('author', "Treść:") !!}
-            {!! Form::textarea('author', $book->author, ['class'=>'form-control']) !!}
+            {!! Form::label('author', "Author:") !!}
+            {!! Form::text('author', $book->author, ['class'=>'form-control']) !!}
+        </div>
+        <div class="form-group">
+            {!! Form::label('year', "Year:") !!}
+            {!! Form::number('year', $book->year, ['class'=>'form-control']) !!}
+        </div>
+        <div class="form-group">
+            {!! Form::label('description', "Description:") !!}
+            {!! Form::textarea('description', $book->description, ['class'=>'form-control']) !!}
         </div>
 
         <div class="form-group">

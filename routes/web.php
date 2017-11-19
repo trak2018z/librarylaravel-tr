@@ -15,15 +15,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+    Route::get('books', [
+        'uses' => 'BooksController@index',
+        'as' => 'books.index'
+    ]);
 
 Route::group([
     'middleware' => 'roles',
     'roles' => ['Admin', 'Moderator']
 ], function() {
-    Route::get('books', [
-        'uses' => 'BooksController@index',
-        'as' => 'books.index'
-    ]);
     Route::get('books/create', [
         'uses' => 'BooksController@create',
         'as' => 'books.create'
