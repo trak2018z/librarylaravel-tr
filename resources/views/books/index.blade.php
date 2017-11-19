@@ -8,11 +8,11 @@
             <th>EDIT</th>
             <th>DELETE</th>
         </tr>
-        @foreach($books as $page)
+        @foreach($books as $book)
             <tr>
-                <td>{{ $page->id }}</td>
-                <td>{{ $page->title  }}</td>
-                <td><a class="btn btn-info" href="#">Edit</a></td>
+                <td>{{ $book->id }}</td>
+                <td>{{ $book->title  }}</td>
+                <td><a class="btn btn-info" href="{{route('books.edit',$book)}}">Edit</a></td>
                 <td>
                     <button class="btn btn-danger">Delete</button>
                     

@@ -54,18 +54,19 @@ class BooksController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function edit(Books $book) {
-        //
+        return view('books.edit', compact('book'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\BooksRequest $request
      * @param  \App\Books  $book
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Books $book) {
-        //
+    public function update(\App\Http\Requests\BooksRequest $request, Books $book) {
+       $book->update($request->all());
+       return redirect()->route('books.index');
     }
 
     /**

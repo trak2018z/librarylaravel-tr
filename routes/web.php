@@ -32,6 +32,16 @@ Route::group([
         'uses' => 'BooksController@store',
         'as' => 'books.store'
     ]);
+    
+    Route::get('books/edit/{book}', [
+        'uses' => 'BooksController@edit',
+        'as' => 'books.edit'
+    ]);
+    
+    Route::put('books/{book}', [
+        'uses' => 'BooksController@update',
+        'as' => 'books.update'
+    ]);
 
 });
 Auth::routes();
