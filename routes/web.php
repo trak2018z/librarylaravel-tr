@@ -42,6 +42,11 @@ Route::group([
         'uses' => 'BooksController@update',
         'as' => 'books.update'
     ]);
+    
+    Route::delete('books/{book}', [
+        'uses' => 'BooksController@destroy',
+        'as' => 'books.delete'
+    ]);
 
 });
 Auth::routes();

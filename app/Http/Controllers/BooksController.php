@@ -65,8 +65,8 @@ class BooksController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function update(\App\Http\Requests\BooksRequest $request, Books $book) {
-       $book->update($request->all());
-       return redirect()->route('books.index');
+        $book->update($request->all());
+        return redirect()->route('books.index');
     }
 
     /**
@@ -76,7 +76,9 @@ class BooksController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function destroy(Books $book) {
-        //
+        
+        $book->delete();
+        return redirect()->route('books.index');
     }
 
 }
