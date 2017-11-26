@@ -14,7 +14,7 @@ class BooksController extends Controller {
      */
     public function index() {
         $books = Books::orderBy('id', 'DESC')->paginate(10);
-        return view('books.index', compact('books'));
+        return $books;
     }
 
     /**
@@ -23,7 +23,7 @@ class BooksController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function create() {
-        return view('books.create');
+        return view('admin.books.create');
     }
 
     /**
@@ -54,7 +54,7 @@ class BooksController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function edit(Books $book) {
-        return view('books.edit', compact('book'));
+        return view('admin.books.edit', compact('book'));
     }
 
     /**
@@ -76,9 +76,20 @@ class BooksController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function destroy(Books $book) {
-        
+
         $book->delete();
         return redirect()->route('books.index');
+    }
+
+    /**
+     * Download the specified resource from storage.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function download() {
+        $this->middleware('auth');
+        $books = Books::orderBy('id', 'DESC')->paginate(10);
+        return view('books.index', compact('books'));
     }
 
 }

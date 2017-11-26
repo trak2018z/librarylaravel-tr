@@ -10,21 +10,24 @@
   | contains the "web" middleware group. Now create something great!
   |
  */
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
-    Route::get('books', [
-        'uses' => 'BooksController@index',
-        'as' => 'books.index'
-    ]);
+Route::get('/', [
+    'uses' => 'user\UserController@index',
+    'as' => 'user.index'
+]);
+Route::get('/books', [
+    'uses' => 'user\BooksController@index',
+    'as' => 'user.index'
+]);
+Route::get('/admin', [
+    'uses' => 'admin\AdminController@index',
+    'as' => 'admin.index'
+]);
 
 Route::group([
     'middleware' => 'roles',
     'roles' => ['Admin', 'Moderator']
-], function() {
-    Route::get('books/create', [
+        ], function() {
+    Route::get('admin/books/create', [
         'uses' => 'BooksController@create',
         'as' => 'books.create'
     ]);
@@ -32,23 +35,26 @@ Route::group([
         'uses' => 'BooksController@store',
         'as' => 'books.store'
     ]);
-    
+
     Route::get('books/edit/{book}', [
-        'uses' => 'BooksController@edit',
+        'uses' => 'admin\BooksController@edit',
         'as' => 'books.edit'
     ]);
-    
+
     Route::put('books/{book}', [
-        'uses' => 'BooksController@update',
+        'uses' => 'admin\BooksController@update',
         'as' => 'books.update'
     ]);
-    
+
     Route::delete('books/{book}', [
-        'uses' => 'BooksController@destroy',
+        'uses' => 'admin\BooksController@destroy',
         'as' => 'books.delete'
     ]);
-
 });
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('books/{book}', [
+    'uses' => 'BooksController@download',
+    'as' => 'books.download'
+])->middleware('auth');
+
