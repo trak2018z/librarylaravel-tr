@@ -7,6 +7,7 @@
         <th>Year</th>
         <th>EDIT</th>
         <th>DELETE</th>
+        <th></th>
     </tr>
     @foreach($books as $book)
     <tr>
@@ -21,6 +22,7 @@
             <button class="btn btn-danger">Delete</button>
             {!! Form::close() !!}    
         </td>
+        <td><a class="btn btn-info" href="{{ asset('download/'.$book->id) }}">Download</a></td>
     </tr>
     @endforeach
 </table>

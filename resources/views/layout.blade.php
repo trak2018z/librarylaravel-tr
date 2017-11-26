@@ -58,7 +58,7 @@
                                                      document.getElementById('logout-form').submit();">
                                             Logout
                                         </a>
-                                        <a href="#">
+                                        <a href="{{ route('admin.index') }}">
                                             Your Panel
                                         </a>
 

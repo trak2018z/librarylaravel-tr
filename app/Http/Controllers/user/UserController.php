@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\user;
 
-use App\Books;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\BooksController;
 

@@ -1,6 +1,6 @@
 @extends('layout')
 @section('content')
-{!! Form::open(['route'=>'books.store'])!!}
+{!! Form::open(['route'=>'books.store','files'=>'true'])!!}
 <div class="col-xs-6">
     @if ($errors->any())
     <ul class='alert alert-danger'>
@@ -31,9 +31,7 @@
 </div>
 <div class="col-xs-6">
     <div class="form-group">
-        <label for="exampleInputFile">PDF:</label>
-        <input type="file" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp">
-        <small id="fileHelp" class="form-text text-muted">Dodaj plik PDF</small>
+       {!!Form::file('books')!!}
     </div>
     <div class='form-group'>
         {!!Form::submit("Zapisz",['class'=>'btn btn-primary'])!!}

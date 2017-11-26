@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Books;
 use Illuminate\Http\Request;
+use Storage;
+use Response;
 
 class BooksController extends Controller {
 
@@ -33,8 +35,9 @@ class BooksController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function store(\App\Http\Requests\BooksRequest $request) {
+        $path = $request->file('books')->storeAs('books', $request->title);
         Books::create($request->all());
-        return redirect()->route('books.index');
+        return redirect()->route('admin.index');
     }
 
     /**
@@ -43,8 +46,13 @@ class BooksController extends Controller {
      * @param  \App\Books  $book
      * @return \Illuminate\Http\Response
      */
-    public function show(Books $book) {
-        //
+    public function show($fileid) {
+        try {
+            $file = storage_path('app') . '\books\\' . $fileid;
+            return response()->download($file);
+        } catch (\Exception $e) {
+            return;
+        }
     }
 
     /**
@@ -66,7 +74,7 @@ class BooksController extends Controller {
      */
     public function update(\App\Http\Requests\BooksRequest $request, Books $book) {
         $book->update($request->all());
-        return redirect()->route('books.index');
+        return redirect()->route('admin.index');
     }
 
     /**
@@ -78,7 +86,7 @@ class BooksController extends Controller {
     public function destroy(Books $book) {
 
         $book->delete();
-        return redirect()->route('books.index');
+        return redirect()->route('admin.index');
     }
 
     /**
@@ -89,7 +97,7 @@ class BooksController extends Controller {
     public function download() {
         $this->middleware('auth');
         $books = Books::orderBy('id', 'DESC')->paginate(10);
-        return view('books.index', compact('books'));
+        return view('admin.index', compact('books'));
     }
 
 }

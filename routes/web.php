@@ -14,19 +14,14 @@ Route::get('/', [
     'uses' => 'user\UserController@index',
     'as' => 'user.index'
 ]);
-Route::get('/books', [
-    'uses' => 'user\BooksController@index',
-    'as' => 'user.index'
-]);
-Route::get('/admin', [
-    'uses' => 'admin\AdminController@index',
-    'as' => 'admin.index'
-]);
-
 Route::group([
     'middleware' => 'roles',
     'roles' => ['Admin', 'Moderator']
         ], function() {
+    Route::get('/admin', [
+        'uses' => 'admin\AdminController@index',
+        'as' => 'admin.index'
+    ]);
     Route::get('admin/books/create', [
         'uses' => 'BooksController@create',
         'as' => 'books.create'
@@ -47,14 +42,13 @@ Route::group([
     ]);
 
     Route::delete('books/{book}', [
-        'uses' => 'admin\BooksController@destroy',
+        'uses' => 'BooksController@destroy',
         'as' => 'books.delete'
     ]);
 });
 Auth::routes();
 
-Route::get('books/{book}', [
-    'uses' => 'BooksController@download',
+Route::get('download/{fileid}', [
+    'uses' => 'BooksController@show',
     'as' => 'books.download'
 ])->middleware('auth');
-
