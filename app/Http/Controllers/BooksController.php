@@ -35,7 +35,8 @@ class BooksController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function store(\App\Http\Requests\BooksRequest $request) {
-        $path = $request->file('books')->storeAs('books', $request->title);
+        $ext = $request->file('books')->getClientOriginalExtension();
+        $request->file('books')->storeAs('books', $request->title . '.' . $ext);
         Books::create($request->all());
         return redirect()->route('admin.index');
     }

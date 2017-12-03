@@ -1,3 +1,4 @@
+<a class="btn btn-primary" href="{{route('books.create')}}"> Dodaj książke</a>
 <table class="table table-hover">
     <tr>
         <th>ID</th>
@@ -22,9 +23,8 @@
             <button class="btn btn-danger">Delete</button>
             {!! Form::close() !!}    
         </td>
-        <td><a class="btn btn-info" href="{{ asset('download/'.$book->id) }}">Download</a></td>
+        <td><a class="btn btn-info" href="{{ asset('download/'.$book->title.'.pdf') }}">Download</a></td>
     </tr>
     @endforeach
 </table>
 {{$books->links()}}
-<a class="btn btn-primary" href="{{route('books.create')}}"> Dodaj książke</a>

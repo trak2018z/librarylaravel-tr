@@ -16,7 +16,7 @@
         <td>{{ $book->author }}</td>
         <td>{{ $book->description }}</td>
         <td>{{ $book->year }}</td>
-        <td><a class="btn btn-info" href="{{ asset('download/'.$book->title) }}">Download</a></td>
+        <td><a class="btn btn-info" href="{{ asset('download/'.$book->title.'.pdf') }}">Download</a></td>
     </tr>
     @endforeach
 </table>
