@@ -1,4 +1,8 @@
+<div class="form-group">
 <a class="btn btn-primary" href="{{route('books.create')}}"> Dodaj książke</a>
+</div>
+     
+    
 <table class="table table-hover">
     <tr>
         <th>ID</th>
@@ -10,7 +14,8 @@
         <th>DELETE</th>
         <th></th>
     </tr>
-    @foreach($books as $book)
+
+    @foreach($data['books'] as $book)
     <tr>
         <td>{{ $book->id }}</td>
         <td>{{ $book->title }}</td>
@@ -27,4 +32,4 @@
     </tr>
     @endforeach
 </table>
-{{$books->links()}}
+{{$data['books']->links()}}

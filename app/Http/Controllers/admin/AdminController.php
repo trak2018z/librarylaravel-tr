@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Books;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\BooksController;
+use App\Http\Controllers\UsersController;
 
 class AdminController extends Controller {
 
@@ -15,7 +16,10 @@ class AdminController extends Controller {
      */
     public function index() {
         $books = (new BooksController)->index();
-        return view('admin.index', compact('books'));
+        $users = (new UsersController)->index();
+        
+        $data = ['books' => $books, 'users' => $users];
+        return view('admin.index', compact('data'));
     }
 
 }

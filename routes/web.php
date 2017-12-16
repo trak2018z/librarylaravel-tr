@@ -22,6 +22,7 @@ Route::group([
         'uses' => 'admin\AdminController@index',
         'as' => 'admin.index'
     ]);
+    //books
     Route::get('admin/books/create', [
         'uses' => 'BooksController@create',
         'as' => 'books.create'
@@ -32,18 +33,32 @@ Route::group([
     ]);
 
     Route::get('books/edit/{book}', [
-        'uses' => 'admin\BooksController@edit',
+        'uses' => 'BooksController@edit',
         'as' => 'books.edit'
     ]);
 
     Route::put('books/{book}', [
-        'uses' => 'admin\BooksController@update',
+        'uses' => 'BooksController@update',
         'as' => 'books.update'
     ]);
 
     Route::delete('books/{book}', [
         'uses' => 'BooksController@destroy',
         'as' => 'books.delete'
+    ]);
+    
+    //users
+    Route::get('users/edit/{user}', [
+        'uses' => 'UsersController@edit',
+        'as' => 'users.edit'
+    ]);
+    Route::put('users/{user}', [
+        'uses' => 'UsersController@update',
+        'as' => 'users.update'
+    ]);
+    Route::delete('users/{user}', [
+        'uses' => 'UsersController@destroy',
+        'as' => 'users.delete'
     ]);
 });
 Auth::routes();
