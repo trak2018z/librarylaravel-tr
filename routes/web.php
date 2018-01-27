@@ -46,7 +46,7 @@ Route::group([
         'uses' => 'BooksController@destroy',
         'as' => 'books.delete'
     ]);
-    
+
     //users
     Route::get('users/edit/{user}', [
         'uses' => 'UsersController@edit',
@@ -59,6 +59,18 @@ Route::group([
     Route::delete('users/{user}', [
         'uses' => 'UsersController@destroy',
         'as' => 'users.delete'
+    ]);
+    Route::get('admin/users/addUser', [
+        'uses' => 'UsersController@add',
+        'as' => 'users.add'
+    ]);
+    Route::post('users/store', [
+        'uses' => 'UsersController@store',
+        'as' => 'users.store'
+    ]);
+    Route::post('roles/store{$id}', [
+        'uses' => 'RolesController@store',
+        'as' => 'roles.store'
     ]);
 });
 Auth::routes();

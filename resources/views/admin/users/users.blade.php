@@ -1,3 +1,6 @@
+<div class="form-group">
+    <a class="btn btn-primary" href="{{route('users.add')}}"> Dodaj użytkownika</a>
+</div>
 <table class="table table-hover">
     <tr>
         <th>ID</th>
@@ -6,7 +9,7 @@
         <th>Created</th>
         <th>Updated</th>
         <th colspan="2">Actions</th>
-        
+
     </tr>
     @foreach($data['users'] as $user)
     <tr>
@@ -21,7 +24,7 @@
             <button class="btn btn-danger">Delete</button>
             {!! Form::close() !!}    
         </td>
-        </tr>
+    </tr>
     @endforeach
 </table>
 {{$data['users']->links()}}

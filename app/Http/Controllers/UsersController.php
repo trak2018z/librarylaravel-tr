@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\User;
+use App\Roles;
+use Illuminate\Support\Facades\Redirect;
 
 class UsersController extends Controller {
 
@@ -25,6 +26,31 @@ class UsersController extends Controller {
      */
     public function edit(User $user) {
         return view('admin.users.edit', compact('user'));
+    }
+
+    /**
+     * Add a new user
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function add() {
+        $roles = Roles::pluck('name', 'id');
+        return view('admin.users.add', compact('roles'));
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \App\Http\Requests\UsersRequest  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(\App\Http\Requests\UsersRequest $request) {
+//        $user = User::create($request->all());
+        $data = ['user_id' => 2, 'role_id' => $request->input('role_id')];
+//        return redirect()->route('roles.store')->with('status', 'Profile updated!');;
+        return (new \App\RolesHasUsers())->store($data);
+        return Redirect::route('roles.store, $id')->with( ['data' => $data] );
+        return redirect()->guest(redirect('roles.store'));
     }
 
     /**
